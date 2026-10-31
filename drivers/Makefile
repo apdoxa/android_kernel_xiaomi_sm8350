@@ -6,6 +6,10 @@
 # Rewritten to use lists instead of if-statements.
 #
 
+# BakaSU needs the generated SELinux headers (flask.h, av_permissions.h),
+# which live in the object tree for O= builds.
+subdir-ccflags-y += -I$(objtree)/security/selinux
+
 obj-y				+= irqchip/
 obj-y				+= bus/
 
@@ -187,3 +191,5 @@ obj-$(CONFIG_GNSS)		+= gnss/
 obj-$(CONFIG_INTERCONNECT)	+= interconnect/
 obj-$(CONFIG_COUNTER)		+= counter/
 obj-$(CONFIG_NXP_SR100)         += uwb-sr100/
+
+obj-$(CONFIG_KSU) += kernelsu/
